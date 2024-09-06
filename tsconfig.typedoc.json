@@ -55,6 +55,9 @@
       "path": "./extensions/apps/antenna"
     },
     {
+      "path": "./extensions/apps/garden"
+    },
+    {
       "path": "./extensions/apps/auth-app"
     },
     {
@@ -80,6 +83,9 @@
     },
     {
       "path": "./worlds/akasha.world"
+    },
+    {
+      "path": "./worlds/garden.world"
     },
     {
       "path": "./tools/executors"

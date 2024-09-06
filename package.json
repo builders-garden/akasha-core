@@ -12,6 +12,7 @@
     "apps:watch": "nx watch --projects=tag:scope:extension --includeDependentProjects -- nx build \\$NX_PROJECT_NAME",
     "world:dev": "nx start @akashaorg/akasha.world --verbose",
     "world:deploy": "nx deploy @akashaorg/akasha.world --verbose",
+    "world:garden:dev": "nx start @buildersgarden/garden.world --verbose",
     "extensions:upload": "nx run @akashaorg/core-sdk:prepare-local && NODE_OPTIONS=\"--no-warnings\" tsx ./tools/scripts/upload-w3-storage.mjs"
   },
   "dependencies": {

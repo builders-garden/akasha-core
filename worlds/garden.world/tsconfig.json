@@ -1,0 +1,15 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "sourceMap": true,
+    "jsx": "react",
+    "outDir": "./lib",
+    "rootDir": "./src",
+    "module": "esnext",
+    "target": "es2022",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "strict": true
+  },
+  "include": ["src/**/*"]
+}

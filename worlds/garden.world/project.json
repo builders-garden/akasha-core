@@ -1,0 +1,71 @@
+{
+  "name": "@buildersgarden/garden.world",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "worlds/garden.world/src",
+  "projectType": "application",
+  "targets": {
+    "prepare": {
+      "dependsOn": [
+        "@akashaorg/ui-awf-hooks:build",
+        "@akashaorg/design-system-core:prepare",
+        "@akashaorg/design-system-components:prepare",
+        "@akashaorg/core-sdk:build",
+        "@akashaorg/ui-lib-extensions:prepare",
+        "@akashaorg/ui-lib-feed:prepare",
+        "@akashaorg/typings:prepare",
+        "@akashaorg/ui-app-loader:prepare"
+      ],
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "worlds/garden.world",
+        "command": "tsc --build"
+      }
+    },
+    "build": {
+      "dependsOn": [
+        "prepare"
+      ],
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "worlds/garden.world",
+        "command": "webpack --config webpack.config.cjs"
+      },
+      "outputs": [
+        "{projectRoot}/lib",
+        "{projectRoot}/dist"
+      ]
+    },
+    "deploy": {
+      "dependsOn": [
+        "build"
+      ],
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "worlds/garden.world",
+        "command": "copyfiles -u 1 \"./dist/**/*\" ./public"
+      },
+      "outputs": [
+        "{projectRoot}/lib",
+        "{projectRoot}/dist"
+      ]
+    },
+    "start": {
+      "dependsOn": [
+        "prepare"
+      ],
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "worlds/garden.world",
+        "command": "webpack serve --config ./webpack.config.cjs --port 8131"
+      },
+      "outputs": [
+        "{projectRoot}/lib",
+        "{projectRoot}/dist"
+      ]
+    }
+  },
+  "tags": [
+    "scope:world",
+    "type:app"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "name": "@buildersgarden/app-garden",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "The Builders Garden is a place where you can grow your ideas and projects.",
+  "author": "builders.garden",
+  "license": "Apache-2.0",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "tsc --build",
+    "pack": "NODE_OPTIONS='--max-old-space-size=4096' webpack --config webpack.config.js",
+    "postpack": "copyfiles -f ./dist/* ../../build/apps/auth-app"
+  },
+  "dependencies": {
+    "single-spa-react": "4.6.0"
+  },
+  "devDependencies": {
+    "@types/react": "17.0.20",
+    "@types/react-dom": "17.0.9"
+  },
+  "peerDependencies": {
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
+  "akasha": {
+    "displayName": "Garden"
+  }
+}

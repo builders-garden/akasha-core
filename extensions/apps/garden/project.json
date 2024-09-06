@@ -1,0 +1,54 @@
+{
+  "name": "@buildersgarden/garden",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "extensions/apps/garden/src",
+  "projectType": "application",
+  "targets": {
+    "prepare": {
+      "dependsOn": [
+        "@akashaorg/ui-awf-hooks:build",
+        "@akashaorg/design-system-core:prepare",
+        "@akashaorg/design-system-components:prepare",
+        "@akashaorg/core-sdk:build",
+        "@akashaorg/ui-lib-extensions:prepare",
+        "@akashaorg/ui-lib-feed:prepare",
+        "@akashaorg/typings:prepare"
+      ],
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "extensions/apps/garden",
+        "command": "tsc --build"
+      }
+    },
+    "test": {
+      "dependsOn": [
+        "@akashaorg/af-testing:prepare",
+        "prepare"
+      ]
+    },
+    "build": {
+      "dependsOn": [
+        "prepare"
+      ],
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "extensions/apps/garden",
+        "command": "webpack --config webpack.config.cjs"
+      },
+      "outputs": [
+        "{projectRoot}/lib",
+        "{workspaceRoot}/dist/apps/garden"
+      ]
+    },
+    "translations": {
+      "executor": "./tools/executors/i18n:extract",
+      "options": {
+        "cwd": "extensions/apps/garden"
+      }
+    }
+  },
+  "tags": [
+    "scope:extension",
+    "type:app"
+  ]
+}
